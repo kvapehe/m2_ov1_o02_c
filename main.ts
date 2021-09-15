@@ -1,23 +1,3 @@
-input.onButtonPressed(Button.A, function () {
-    tallet = tallet * 2
-    if (tallet % startigjen0 == 0) {
-        tallet = minstetall
-    } else {
-        basic.clearScreen()
-    }
-    basic.showNumber(tallet)
-    OLED.writeNumNewLine(tallet)
-})
-input.onButtonPressed(Button.B, function () {
-    tallet = tallet / 2
-    if (tallet < minstetall) {
-        tallet = 1
-    } else {
-        basic.clearScreen()
-    }
-    basic.showNumber(tallet)
-    OLED.writeNumNewLine(tallet)
-})
 /**
  * Mutipliserer med A og "dividerer" med med B
  * 
@@ -27,7 +7,7 @@ input.onButtonPressed(Button.B, function () {
  * 
  * Denne versjonen har max = 8 og min = 1, for å unngå "scrolling"
  * 
- * Hmm eksperiment med test mot 0 gir desimaltall, men ved å sette variablene minstetall til 0 og så teste mot 
+ * Hmm eksperiment med test mot 0 gir desimaltall, men ved å sette variablene minstetall til 0 og så teste mot
  * 
  * denne virket ikke som forventet. Litt rart i grunn.
  * 
@@ -61,14 +41,36 @@ input.onButtonPressed(Button.B, function () {
  * 
  * Endrer nok intervall etter hvert.
  */
-let startigjen0 = 0
+input.onButtonPressed(Button.A, function () {
+    tallet = tallet * 2
+    if (tallet % storstetallx2 == 0) {
+        tallet = minstetall
+    } else {
+        basic.clearScreen()
+    }
+    basic.showNumber(tallet)
+    OLED.writeNumNewLine(tallet)
+})
+input.onButtonPressed(Button.B, function () {
+    tallet = tallet / 2
+    if (tallet < minstetall) {
+        tallet = storstetall
+    } else {
+        basic.clearScreen()
+    }
+    basic.showNumber(tallet)
+    OLED.writeNumNewLine(tallet)
+})
+let storstetallx2 = 0
+let storstetall = 0
 let minstetall = 0
 let tallet = 0
 OLED.init(128, 64)
 tallet = 1
 minstetall = 1
-minstetall = 8
-startigjen0 = startigjen0
+storstetall = 8
+storstetallx2 = storstetall * 2
+let startigjen0 = storstetall
 basic.showNumber(tallet)
 basic.forever(function () {
     music.ringTone(262)
